@@ -14,7 +14,7 @@ function agregarCita() {
 
     const li = document.createElement("li");
     li.innerHTML = `<span><strong>${nombreCita}</strong> - ${fechaCita} a las ${horaCita}</span>
-                    <button class="borrar-btn" onClick="borrarCita(this)">Eliminar</button>`;
+                    <button class="borrar-btn btn-small pink waves-effect waves-light" onClick="borrarCita(this)">Eliminar</button>`;
 
     listadoCitas.appendChild(li);
 
