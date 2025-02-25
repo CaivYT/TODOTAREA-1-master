@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Beauty&Cita</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -14,12 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body class="container s pink hide-on-med-and-up">
-    <div class="container white">
-        <h1 class="center-aling container">Lista de tareas</h1>
+    <div class="contenedor container white z-depth-3">
+        <img src="img/Recurso 5.png" alt="logo">
+        <h1 class="center-aling container">Agenda tu cita</h1>
         <input type="text" name="nombreCita" id="nombreCita" placeholder="Nombre">
         <input type="date" id="fechaCita">
         <input type="time" id="horaCita">
-        <button class="hoverable btn" onclick="agregarCita()">Agregar Cita</button>
+        <button class="center-aling hoverable btn-large pink darken-3 waves-effect waves-ligth" onclick="agregarCita()">Agregar Cita</button>
        <ul id="listadoCitas">
            <!--<span>Tarea prueba</span> <button class="borrar-btn">Eliminar</button></li>
             <li>Tarea prueba <button class="borrar-btn">Eliminar</button></li>

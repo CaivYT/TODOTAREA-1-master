@@ -1,7 +1,18 @@
 body{
     font-family: Arial, Helvetica, sans-serif;
     max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
+    margin: 50px auto;
+    padding: 10px;
+    font-family: "Work Sans", serif;  
 }
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 30px;
+    border-radius: 7px;
+    text-align: center;
+}
+
 
