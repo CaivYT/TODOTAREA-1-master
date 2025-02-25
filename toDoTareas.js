@@ -1,82 +1,61 @@
-document-addEventListener("DOMContentLoaded", cargarTareas);
+document.addEventListener("DOMContentLoaded", cargarCitas);
 
+function agregarCita() {
+    const nombreCita = document.getElementById("nombreCita").value.trim();
+    const fechaCita = document.getElementById("fechaCita").value;
+    const horaCita = document.getElementById("horaCita").value;
 
-function agregarTarea(){
-
-    //capturamos la tarea a listar
-    const nuevaTarea = document.getElementById("nuevaTarea");
-    const textoTarea = nuevaTarea.value.trim();
-
-    //validar si es un vacío
-    if(textoTarea === ""){
-        alert("Agregue una tarea");
+    if (nombreCita === "" || fechaCita === "" || horaCita === "") {
+        alert("Por favor completa todos los campos");
         return;
     }
 
-    //capturamos el listado de tareas
-    const listadoTarea = document.getElementById("listadoTareas");
+    const listadoCitas = document.getElementById("listadoCitas");
 
-    const li = document.createElement("li"); //se crea un elemento <li></li>
-    li.innerHTML = `<span>${textoTarea}</span> 
-                        <button class="borrar-btn completado" onClick="borrarTarea(this)">Eliminar</button>`;
+    const li = document.createElement("li");
+    li.innerHTML = `<span><strong>${nombreCita}</strong> - ${fechaCita} a las ${horaCita}</span>
+                    <button class="borrar-btn" onClick="borrarCita(this)">Eliminar</button>`;
 
-    li.querySelector("span").addEvenListener("click", function() {
-        this.parentElement.classlist.toggle("completado")
-    });
+    listadoCitas.appendChild(li);
 
-    listadoTarea.appendChild(li);
-
-    nuevaTarea.value = "";
-    guardarTareasEnlocalstorage();
-
+    guardarCitasEnLocalStorage();
 }
 
-function borrarTarea(elementoTarea){
-    elementoTarea.parentElement.remove();
-
+function borrarCita(elementoCita) {
+    elementoCita.parentElement.remove();
+    guardarCitasEnLocalStorage();
 }
 
-function guardarTareasEnlocalstorage() {
-    const tareas= [];
-    document.querySelectorAll("li"),forEach(tarea => {
-        tareas.push({
-            Nombre_Tarea: tarea.querySelector("sapn").innerText,
-
-            Estado_Tarea: tarea.classlist.contains("completado")
+function guardarCitasEnLocalStorage() {
+    const citas = [];
+    document.querySelectorAll("#listadoCitas li").forEach(cita => {
+        citas.push({
+            Nombre_Cita: cita.querySelector("span").innerText.split(" - ")[0], // Extrae el nombre
+            Fecha_Cita: cita.querySelector("span").innerText.split(" - ")[1].split(" a las ")[0], // Extrae la fecha
+            Hora_Cita: cita.querySelector("span").innerText.split(" a las ")[1] // Extrae la hora
         });
     });
 
-    localStorage.setItem("TareasGuardadas", JSON.stringify(tareas));
+    localStorage.setItem("CitasGuardadas", JSON.stringify(citas));
 }
-function cargarTareas() {
-    const tareas = JSON.parse(localStorage.getItem("TareasGuardadas"))|| [];
-    const listadoTareas = document.getElementById ("listadoTareas");
-    tareas.forEach(tarea =>{
-        const li = document.createElement("li"); /* se construyo un li*/
-        li.innerHTML = `
-        <span>${tarea.Nombre_Tarea}</span>
-        <button class="borrar-btn" onclick onClick="borrarTarea(this)">Eliminar</button>`; 
-        if(tarea-Estado_Tarea == true){
-            li.classList.add("completado");
-        }
-        listadoTareas.appendChild(li);
 
+function cargarCitas() {
+    const citas = JSON.parse(localStorage.getItem("CitasGuardadas")) || [];
+    const listadoCitas = document.getElementById("listadoCitas");
+    listadoCitas.innerHTML = ""; // Limpiar antes de cargar
 
+    citas.forEach(cita => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span><strong>${cita.Nombre_Cita}</strong> - ${cita.Fecha_Cita} a las ${cita.Hora_Cita}</span>
+                        <button class="borrar-btn" onClick="borrarCita(this)">Eliminar</button>`;
 
-
+        listadoCitas.appendChild(li);
     });
-
-
 }
 
-
-
-
-/* GUARDAR DOANDOLE ENTER */
-const  inputnuevaTarea = document.getElementById("nuevaTarea");
-
-inputNuevaTarea.addEvenListener("keypress", function(tecla){
-    if(tecla.key == "Enter") {
-        agregarTarea();
+const inputNombreCita = document.getElementById("nombreCita");
+inputNombreCita.addEventListener("keypress", function (tecla) {
+    if (tecla.key === "Enter") {
+        agregarCita();
     }
 });
