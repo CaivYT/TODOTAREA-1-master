@@ -22,12 +22,18 @@
         <input type="date" id="fechaCita">
         <input type="time" id="horaCita">
         <button class="center-aling hoverable btn-large pink darken-3 waves-effect waves-ligth" onclick="agregarCita()">Agregar Cita</button>
-       <ul id="listadoCitas">
-           <!--<span>Tarea prueba</span> <button class="borrar-btn">Eliminar</button></li>
-            <li>Tarea prueba <button class="borrar-btn">Eliminar</button></li>
-            <li>Tarea prueba <button class="borrar-btn">Eliminar</button></li>
-            -->
-        </ul>
+        <div id="mensajeError" class="red-text center-align" style="display: none;">
+            <h5>Por favor llena los campos requeridos.</h5>
+        </div>
+        <div class="Reserva">
+            <button id="btnReservas" class="center-aling hoverable btn-large" onclick="toggleReservas()">Ver reservas</button>
+            <ul id="listadoCitas" style="display: none;">
+                <!--<span>Tarea prueba</span> <button class="borrar-btn">Eliminar</button></li>
+                 <li>Tarea prueba <button class="borrar-btn">Eliminar</button></li>
+                 <li>Tarea prueba <button class="borrar-btn">Eliminar</button></li>
+                 -->
+            </ul>
+        </div>
     </div>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
